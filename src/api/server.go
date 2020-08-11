@@ -3,6 +3,7 @@ package api
 import (
 	"api/router"
 	"config"
+	"db"
 	"fmt"
 	"golang.org/x/net/context"
 	"log"
@@ -10,7 +11,7 @@ import (
 )
 
 func Run() {
-	client := config.InitializeFirebase()
+	client := db.FirestoreClient()
 
 	users := client.Collection("users")
 
