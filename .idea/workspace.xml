@@ -1,7 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:devdataapi" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:rsgowman" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb7605e2-7191-4ba9-bbce-f8ab23e6ca1b" name="Default Changelist" comment="" />
+    <list default="true" id="bb7605e2-7191-4ba9-bbce-f8ab23e6ca1b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/controllers/authentication.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/models/Test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/models/TestSuite.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/models/User.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/repository/user_repository.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/api/utils/console/console.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/router/routes/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/router/routes/routes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/router/routes/test_cases_routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/router/routes/api_routes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/database.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/db/database.go" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +59,9 @@
     </option>
   </component>
   <component name="GOROOT" path="/usr/local/Cellar/go/1.14.6/libexec" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="GoLibraries">
     <option name="urls">
       <list>
@@ -23,6 +70,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1fxjwmFHk2OpWdN5zJcFT3n9Pj5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -40,13 +90,14 @@
     <property name="settings.editor.selected.configurable" value="Settings.Markdown" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/api" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/database" />
       <recent name="$PROJECT_DIR$/src/main" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunManager" selected="Go Build.go build main">
@@ -78,6 +129,17 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="WindowStateProjectService">
     <state x="-334" y="-863" key="#GOPATH" timestamp="1597166964817">
@@ -112,9 +174,11 @@
       <screen x="-1094" y="-1057" width="1920" height="1057" />
     </state>
     <state x="-625" y="-890" key="SettingsEditor/-1094.-1057.1920.1057/0.23.1280.777@-1094.-1057.1920.1057" timestamp="1597178228712" />
-    <state x="-469" y="-822" width="670" height="676" key="search.everywhere.popup" timestamp="1597182247989">
-      <screen x="-1094" y="-1057" width="1920" height="1057" />
+    <state x="417" y="196" width="670" height="497" key="search.everywhere.popup" timestamp="1597201322169">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="-469" y="-822" width="670" height="676" key="search.everywhere.popup/-1094.-1057.1920.1057/0.23.1280.777@-1094.-1057.1920.1057" timestamp="1597182247989" />
+    <state x="417" y="196" width="670" height="497" key="search.everywhere.popup/-1094.-1057.1920.1057/0.23.1280.777@0.23.1280.777" timestamp="1597201322169" />
+    <state x="417" y="196" width="670" height="497" key="search.everywhere.popup/0.23.1280.777@0.23.1280.777" timestamp="1597190318615" />
   </component>
 </project>

@@ -12,7 +12,7 @@ type Route struct {
 }
 
 func Load() []Route {
-	routes := testCasesRoutes
+	routes := apiRoutes
 	return routes
 }
 

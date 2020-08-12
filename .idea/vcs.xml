@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/cloud.google.com/go" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/firebase.google.com/go" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/golang/groupcache" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/golang/protobuf" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/google/go-cmp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/googleapis/gax-go" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/github.com/gorilla/mux" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/go.opencensus.io" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/golang.org/x/net" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/golang.org/x/oauth2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/golang.org/x/text" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/google.golang.org/api" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/google.golang.org/genproto" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/google.golang.org/grpc" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/src/google.golang.org/protobuf" vcs="Git" />
+  </component>
+</project>
