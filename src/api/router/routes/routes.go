@@ -6,14 +6,25 @@ import (
 )
 
 type Route struct {
-	Uri string
-	Method string
+	Uri     string
+	Method  string
 	Handler func(http.ResponseWriter, *http.Request)
 }
 
 func Load() []Route {
-	routes := apiRoutes
-	return routes
+
+	routes := [][]Route{
+		userRoutes,
+		testCaseRoutes,
+	}
+
+	var joinedRoutes []Route
+
+	for _, r := range routes {
+		joinedRoutes = append(joinedRoutes, r...)
+	}
+
+	return joinedRoutes
 }
 
 func SetupRoutes(r *mux.Router) *mux.Router {

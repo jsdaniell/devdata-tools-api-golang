@@ -26,7 +26,7 @@ func Run() {
 	//defer client.Close()
 
 	config.Load()
-	fmt.Printf("\n\tListening... [::]:%d\n", config.PORT)
+	fmt.Printf("\nListening... localhost:%d\n", config.PORT)
 	listen(config.PORT)
 }
 
