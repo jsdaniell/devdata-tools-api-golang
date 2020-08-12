@@ -31,16 +31,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb7605e2-7191-4ba9-bbce-f8ab23e6ca1b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/api/router/routes/user_routes.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/config/logger/logger.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/main" beforeDir="false" afterPath="$PROJECT_DIR$/bin/main" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/controllers/authentication.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/controllers/authentication.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/repository/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/repository/user_repository/user_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/router/routes/api_routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/router/routes/test_case_routes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/router/routes/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/router/routes/routes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/server.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/repository/user_repository/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/repository/user_repository/user_repository.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/router/routes/user_routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/router/routes/user_routes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/logger/logs/test_case.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/logger/logs/test_case.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/logger/logs/user.log" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/logger/logs/user.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,6 +170,10 @@
       <screen x="-1094" y="-1057" width="1920" height="1057" />
     </state>
     <state x="-625" y="-890" key="SettingsEditor/-1094.-1057.1920.1057/0.23.1280.777@-1094.-1057.1920.1057" timestamp="1597178228712" />
+    <state x="347" y="54" width="586" height="714" key="find.popup" timestamp="1597257229250">
+      <screen x="0" y="23" width="1280" height="777" />
+    </state>
+    <state x="347" y="54" width="586" height="714" key="find.popup/-1094.-1057.1920.1057/0.23.1280.777@0.23.1280.777" timestamp="1597257229250" />
     <state x="417" y="196" width="670" height="497" key="search.everywhere.popup" timestamp="1597244670278">
       <screen x="0" y="23" width="1280" height="777" />
     </state>

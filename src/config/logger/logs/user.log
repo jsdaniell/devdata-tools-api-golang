@@ -1,2 +1,5 @@
-2020/08/12 13:20:26 logger.go:26: LogFile : src/config/logger/logs/user.log
-2020/08/12 13:20:31 user_repository.go:39: User logged: José Daniel | AIzaSyAPBexuJktp2lD3kinXzyT-7TOxL4eaaIg | danielaraujo0402@gmail.com
+2020/08/12 15:35:44 logger.go:26: LogFile : src/config/logger/logs/user.log
+2020/08/12 15:35:57 user_repository.go:13: User for uid: "f299b4dd-d904-44d6-90f5-1c4c22255a56" does not exists.
+2020/08/12 15:35:57 authentication.go:36: User for uid: "f299b4dd-d904-44d6-90f5-1c4c22255a56" does not exists.
+2020/08/12 15:35:57 user_repository.go:51: Creating new user from: Josef | 99490bde-5c78-455a-aa9a-22f8169cc6c8 | josef@gmail.com
+2020/08/12 15:35:58 user_repository.go:76: User Created: Josef | 99490bde-5c78-455a-aa9a-22f8169cc6c8 | josef@gmail.com

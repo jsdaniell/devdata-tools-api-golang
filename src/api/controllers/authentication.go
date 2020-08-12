@@ -3,37 +3,54 @@ package controllers
 import (
 	"api/models"
 	"api/repository/user_repository"
-	"config/logger"
 	"encoding/json"
 	"fmt"
-	"github.com/davecgh/go-spew/spew"
+	"io/ioutil"
 	"net/http"
 )
 
+
+
 func LoginUser(w http.ResponseWriter, r *http.Request) {
+
+	var userReceived models.User
 
 	var user models.User
 
-	user, err := user_repository.GetUserByUid(r.Header["Authorization"][0])
+	bytes, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		logger.LogUser.Println(err)
+		fmt.Errorf(`error when parsing body`)
+	}
+
+	err = json.Unmarshal(bytes, &userReceived)
+	if err != nil {
+		fmt.Println("Error when unmarshal userBody")
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+
+
+	user, err = user_repository.GetUserByUid(userReceived.Uid)
+	if err != nil {
+
 		fmt.Println(err)
 	}
 
-	spew.Dump(user)
-
 	if (models.User{}) == user {
-		// TODO: Create a new user
-		fmt.Println("NewUser")
-	} else {
-		js, err := json.Marshal(user)
+		newUser, err := user_repository.CreateNewUserFromLogin(userReceived)
 		if err != nil {
-			fmt.Errorf("error on unmarshal user struct json")
+			fmt.Println("Error on creating user")
 		}
 
 		w.WriteHeader(200)
 		w.Header().Set("Content-Type", "application/json")
-		w.Write(js)
+
+		w.Write([]byte(newUser.Uid))
+
+	} else {
+		w.WriteHeader(200)
+		w.Header().Set("Content-Type", "application/json")
+		w.Write([]byte(user.Uid))
 	}
 
 
