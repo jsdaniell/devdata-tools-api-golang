@@ -30,14 +30,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb7605e2-7191-4ba9-bbce-f8ab23e6ca1b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/api/controllers/server.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/router/routes/server_routes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/controllers/authentication.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/controllers/authentication.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/router/routes/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/router/routes/routes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/devdata-tools-api-golang" beforeDir="false" afterPath="$PROJECT_DIR$/src/devdata-tools-api-golang" afterDir="false" />
-    </list>
+    <list default="true" id="bb7605e2-7191-4ba9-bbce-f8ab23e6ca1b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
