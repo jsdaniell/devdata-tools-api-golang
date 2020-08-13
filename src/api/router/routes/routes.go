@@ -14,6 +14,7 @@ type Route struct {
 func Load() []Route {
 
 	routes := [][]Route{
+		serverRoutes,
 		userRoutes,
 		testCaseRoutes,
 	}

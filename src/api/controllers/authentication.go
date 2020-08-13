@@ -9,8 +9,6 @@ import (
 	"net/http"
 )
 
-
-
 func LoginUser(w http.ResponseWriter, r *http.Request) {
 
 	var userReceived models.User
@@ -43,16 +41,13 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 		}
 
 		w.WriteHeader(200)
-		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Content-Type", "text/plain")
 
 		w.Write([]byte(newUser.Uid))
 
 	} else {
 		w.WriteHeader(200)
-		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Content-Type", "text/plain")
 		w.Write([]byte(user.Uid))
 	}
-
-
-
 }
