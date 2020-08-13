@@ -31,15 +31,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb7605e2-7191-4ba9-bbce-f8ab23e6ca1b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/.godir" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/controllers/authentication.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/controllers/authentication.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/repository/user_repository/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/repository/user_repository/user_repository.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/router/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/router/routes/test_case_routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/router/routes/test_case_routes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/router/routes/user_routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/router/routes/user_routes.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/logger/logger.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/logger/logger.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,10 +143,11 @@
       <screen x="-1094" y="-1057" width="1920" height="1057" />
     </state>
     <state x="-334" y="-688" key="#Go_Modules/-1094.-1057.1920.1057/0.23.1280.777@-1094.-1057.1920.1057" timestamp="1597171722665" />
-    <state x="-358" y="-718" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1597179796274">
-      <screen x="-1094" y="-1057" width="1920" height="1057" />
+    <state x="491" y="272" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1597289562107">
+      <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="-358" y="-718" key="#com.intellij.fileTypes.FileTypeChooser/-1094.-1057.1920.1057/0.23.1280.777@-1094.-1057.1920.1057" timestamp="1597179796274" />
+    <state x="491" y="272" key="#com.intellij.fileTypes.FileTypeChooser/-1094.-1057.1920.1057/0.23.1280.777@0.23.1280.777" timestamp="1597289562107" />
     <state width="1878" height="290" key="GridCell.Tab.0.bottom" timestamp="1597184976229">
       <screen x="-1094" y="-1057" width="1920" height="1057" />
     </state>
