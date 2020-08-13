@@ -1,14 +1,14 @@
 package routes
 
 import (
-"api/controllers"
-"net/http"
+	"github.com/jsdaniell/devdata-tools-api-golang/api/controllers"
+	"net/http"
 )
 
 var userRoutes = []Route{
 	Route{
-		Uri: "/login",
-		Method: http.MethodPost,
+		Uri:     "/login",
+		Method:  http.MethodPost,
 		Handler: controllers.LoginUser,
 	},
 }

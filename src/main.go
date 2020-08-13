@@ -1,7 +1,7 @@
 package main
 
 import (
-	"devdataapi/src/api"
+	"github.com/jsdaniell/devdata-tools-api-golang/api"
 )
 
 func main() {

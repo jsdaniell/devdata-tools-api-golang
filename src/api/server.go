@@ -1,9 +1,9 @@
 package api
 
 import (
-	"api/router"
-	"config"
 	"fmt"
+	"github.com/jsdaniell/devdata-tools-api-golang/api/router"
+	"github.com/jsdaniell/devdata-tools-api-golang/config"
 	"log"
 	"net/http"
 )

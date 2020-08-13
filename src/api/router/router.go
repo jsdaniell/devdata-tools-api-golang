@@ -1,8 +1,8 @@
 package router
 
 import (
-	"api/router/routes"
 	"github.com/gorilla/mux"
+	"github.com/jsdaniell/devdata-tools-api-golang/api/router/routes"
 )
 
 func New() *mux.Router {

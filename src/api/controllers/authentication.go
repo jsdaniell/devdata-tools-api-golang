@@ -1,10 +1,10 @@
 package controllers
 
 import (
-	"api/models"
-	"api/repository/user_repository"
 	"encoding/json"
 	"fmt"
+	"github.com/jsdaniell/devdata-tools-api-golang/api/models"
+	"github.com/jsdaniell/devdata-tools-api-golang/api/repository/user_repository"
 	"io/ioutil"
 	"net/http"
 )

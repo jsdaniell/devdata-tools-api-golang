@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"api/controllers"
+	"github.com/jsdaniell/devdata-tools-api-golang/api/controllers"
 	"net/http"
 )
 
