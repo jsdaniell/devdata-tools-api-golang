@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	PORT = 0
+	PORT = 9000
 )
 
 func Load(){
@@ -20,7 +20,7 @@ func Load(){
 		log.Fatalln(err)
 	}
 
-	PORT, err = strconv.Atoi(os.Getenv("API_PORT"))
+	PORT, err = strconv.Atoi(os.Getenv("PORT"))
 	if err != nil {
 		log.Println(err)
 		PORT = 9000
