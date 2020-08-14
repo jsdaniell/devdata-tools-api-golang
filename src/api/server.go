@@ -9,22 +9,6 @@ import (
 )
 
 func Run() {
-	//client := db.FirestoreClient()
-	//
-	//users := client.Collection("users")
-	//
-	//documents, err := users.Documents(context.Background()).GetAll()
-	//if err != nil {
-	//	log.Fatalln(err)
-	//}
-	//
-	//
-	//for _, doc := range documents {
-	//	fmt.Println(doc.Data())
-	//}
-	//
-	//defer client.Close()
-
 	config.Load()
 	fmt.Printf("\nListening... localhost:%d\n", config.PORT)
 	listen(config.PORT)
