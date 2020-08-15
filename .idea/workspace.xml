@@ -10,42 +10,23 @@
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:devdataapi" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:rsgowman" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bb7605e2-7191-4ba9-bbce-f8ab23e6ca1b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/api/middlewares/middleswares.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/responses/responses.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/security/hash.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/api/utils/channels/channels.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/mod/cache/download/golang.org/x/crypto/@v/list" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/mod/cache/download/golang.org/x/crypto/@v/list" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/sumdb/sum.golang.org/latest" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/sumdb/sum.golang.org/latest" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/controllers/authentication.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/controllers/authentication.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/router/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api/router/routes/routes.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/router/routes/routes.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/middlewares/middleswares.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/middlewares/middleswares.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/repository/user_repository/user_repository.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/repository/user_repository/user_repository.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/server.go" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/server.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/devdata-tools-api-golang" beforeDir="false" afterPath="$PROJECT_DIR$/src/devdata-tools-api-golang" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/src/go.mod" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/src/go.sum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/vendor/modules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/vendor/modules.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,11 +169,11 @@
     <state x="-625" y="-890" key="SettingsEditor/-1094.-1057.1920.1057/0.23.1280.777@-1094.-1057.1920.1057" timestamp="1597178228712" />
     <state x="313" y="78" key="SettingsEditor/-1094.-1057.1920.1057/0.23.1280.777@0.23.1280.777" timestamp="1597287656171" />
     <state x="165" y="23" key="SettingsEditor/0.23.1280.777@0.23.1280.777" timestamp="1597413828989" />
-    <state x="347" y="54" width="586" height="714" key="find.popup" timestamp="1597412390806">
+    <state x="347" y="54" width="586" height="714" key="find.popup" timestamp="1597474576612">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="347" y="54" width="586" height="714" key="find.popup/-1094.-1057.1920.1057/0.23.1280.777@0.23.1280.777" timestamp="1597257229250" />
-    <state x="347" y="54" width="586" height="714" key="find.popup/0.23.1280.777@0.23.1280.777" timestamp="1597412390806" />
+    <state x="347" y="54" width="586" height="714" key="find.popup/0.23.1280.777@0.23.1280.777" timestamp="1597474576612" />
     <state x="417" y="196" width="670" height="497" key="search.everywhere.popup" timestamp="1597413538070">
       <screen x="0" y="23" width="1280" height="777" />
     </state>

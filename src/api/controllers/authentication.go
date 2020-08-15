@@ -2,23 +2,18 @@ package controllers
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/models"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/repository/user_repository"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/responses"
-	"github.com/jsdaniell/devdata-tools-api-golang/api/utils/cors"
 	"io/ioutil"
 	"net/http"
 )
 
 func LoginUser(w http.ResponseWriter, r *http.Request) {
 
-	cors.EnableCors(&w)
+	w.Header().Set("Content-Type", "application/json")
 
-	cors.SetupResponse(&w, r)
-	if (*r).Method == "OPTIONS" {
-		return
-	}
+	// TODO: Compare received json and return bad request if isn't
 
 	var userReceived models.User
 
@@ -32,14 +27,14 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 
 	err = json.Unmarshal(bytes, &userReceived)
 	if err != nil {
-		fmt.Println("Error when unmarshal userBody")
-		w.WriteHeader(http.StatusBadRequest)
+		responses.ERROR(w, http.StatusUnprocessableEntity, err)
 		return
 	}
 
 	user, err = user_repository.GetUserByUid(userReceived.Uid)
 	if err != nil {
-		fmt.Println(err)
+		responses.ERROR(w, http.StatusUnprocessableEntity, err)
+		return
 	}
 
 	if (models.User{}) == user {

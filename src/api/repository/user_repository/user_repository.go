@@ -22,21 +22,19 @@ func GetUserByUid(uid string) (models.User, error) {
 
 	user, err := users.Doc(uid).Get(context.Background())
 	if err != nil {
-		return loggingAndReturningError(`User for uid: "` + uid + `" does not exists.`)
+		return loggingAndReturningError(err.Error())
 	}
 
 	parsed, err := json.Marshal(user.Data())
 	if err != nil {
-		return models.User{}, err
+		return loggingAndReturningError(err.Error())
 	} else {
 		var us models.User
 
 		err := json.Unmarshal(parsed, &us)
 		if err != nil {
-			return models.User{}, err
+			return loggingAndReturningError(err.Error())
 		}
-
-		//logger.LogUser.Println("User logged: " + us.DisplayName + " | " + us.ApiKey + " | " + us.Email)
 
 		return us, nil
 	}
@@ -52,29 +50,26 @@ func CreateNewUserFromLogin(newUser models.User) (models.User, error) {
 
 	_, err := client.Collection("users").Doc(newUser.Uid).Set(context.Background(), newUser)
 	if err != nil {
-		return models.User{}, fmt.Errorf("error on save new user")
+		return models.User{}, err
 	} else {
 
 		var newUs models.User
 
 		newUserFromFirestore, err := client.Collection("users").Doc(newUser.Uid).Get(context.Background())
 		if err != nil {
-			return loggingAndReturningError("error get new saved user: " + newUser.DisplayName + " | " + newUser.ApiKey + " | " + newUser.Email)
+			return loggingAndReturningError(err.Error())
 		}
 
 		parsedNewUser, err := json.Marshal(newUserFromFirestore.Data())
 		if err != nil {
-			return models.User{}, fmt.Errorf("error on marshal new user getted from firestore: " + string(parsedNewUser))
+			return models.User{}, err
 		}
 
 		err = json.Unmarshal(parsedNewUser, &newUs)
 		if err != nil {
-			return models.User{}, fmt.Errorf("error on unmarshal new user getted from firestore: " + string(parsedNewUser))
+			return models.User{}, err
 		}
 
-		//logger.LogUser.Println("User Created: " + newUs.DisplayName + " | " + newUs.ApiKey + " | " + newUs.Email)
-
 		return newUs, nil
-
 	}
 }
