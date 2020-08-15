@@ -1,6 +1,8 @@
 package middlewares
 
 import (
+	"fmt"
+	"github.com/jsdaniell/devdata-tools-api-golang/api/responses"
 	"log"
 	"net/http"
 )
@@ -21,13 +23,24 @@ func SetMiddlewareLogger(next http.HandlerFunc) http.HandlerFunc{
 			return
 		}
 
+
+
 		next(w, r)
 	}
 }
 
-func SetMiddlewareJSON(next http.HandlerFunc) http.HandlerFunc{
+func SetMiddlewareJSON(next http.HandlerFunc, openRoute bool) http.HandlerFunc{
 	return func(w http.ResponseWriter, r *http.Request){
 		w.Header().Set("Content-Type", "application/json")
+
+		if !openRoute {
+			auth := r.Header.Get("Authorization")
+			if auth == "" {
+				responses.ERROR(w, http.StatusBadRequest, fmt.Errorf("missing authorization token"))
+				return
+			}
+		}
+
 		next(w, r)
 	}
 }

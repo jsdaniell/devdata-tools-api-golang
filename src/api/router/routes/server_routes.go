@@ -10,5 +10,6 @@ var serverRoutes = []Route{
 		Uri:     "/",
 		Method:  http.MethodGet,
 		Handler: controllers.ServerRunning,
+		Open: true,
 	},
 }

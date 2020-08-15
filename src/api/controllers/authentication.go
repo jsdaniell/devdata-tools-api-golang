@@ -11,8 +11,6 @@ import (
 
 func LoginUser(w http.ResponseWriter, r *http.Request) {
 
-	w.Header().Set("Content-Type", "application/json")
-
 	// TODO: Compare received json and return bad request if isn't
 
 	var userReceived models.User
@@ -44,13 +42,13 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 
-		w.WriteHeader(200)
+		w.WriteHeader(http.StatusCreated)
 		w.Header().Set("Content-Type", "text/plain")
 
 		w.Write([]byte(newUser.Uid))
 
 	} else {
-		w.WriteHeader(200)
+		w.WriteHeader(http.StatusOK)
 		w.Header().Set("Content-Type", "text/plain")
 		w.Write([]byte(user.Uid))
 	}

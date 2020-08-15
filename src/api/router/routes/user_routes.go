@@ -10,5 +10,6 @@ var userRoutes = []Route{
 		Uri:     "/login",
 		Method:  http.MethodPost,
 		Handler: controllers.LoginUser,
+		Open: true,
 	},
 }

@@ -7,9 +7,10 @@ import (
 )
 
 type Route struct {
-	Uri     string
-	Method  string
-	Handler func(http.ResponseWriter, *http.Request)
+	Uri           string
+	Method        string
+	Handler       func(http.ResponseWriter, *http.Request)
+	Open bool
 }
 
 func Load() []Route {
@@ -17,7 +18,7 @@ func Load() []Route {
 	routes := [][]Route{
 		serverRoutes,
 		userRoutes,
-		testCaseRoutes,
+		suiteRoutes,
 	}
 
 	var joinedRoutes []Route
@@ -42,7 +43,7 @@ func SetupRoutesWithMiddlewares(r *mux.Router) *mux.Router {
 
 	for _, route := range Load() {
 		r.HandleFunc(route.Uri, middlewares.SetMiddlewareLogger(
-			middlewares.SetMiddlewareJSON(route.Handler))).Methods(route.Method, "OPTIONS")
+			middlewares.SetMiddlewareJSON(route.Handler, route.Open))).Methods(route.Method, "OPTIONS")
 	}
 
 	return r
