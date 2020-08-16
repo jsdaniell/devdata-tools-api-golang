@@ -71,3 +71,47 @@ func CreateSuite(uid string, typeSuite string, nameSuite string) (*firestore.Wri
 		}
 	}
 }
+
+func DeleteSuite(uid string, typeSuite string, nameSuite string) error {
+	client := db.FirestoreClient()
+	defer client.Close()
+
+	groupCollection := client.Collection("users/" + uid + "/" + typeSuite)
+
+	doc, err := groupCollection.Doc(rules.DocNameByTitle(nameSuite)).Get(context.Background())
+	if err != nil {
+		return err
+	}
+
+	childrenName, err := rules.GetChildrenNameOfSuite(typeSuite)
+	if err != nil {
+		return err
+	}
+
+	if doc.Exists() {
+
+		childrenCollection := client.Collection("users/" + uid + "/" + typeSuite + "/" + nameSuite + "/" + childrenName)
+
+		docs, err := childrenCollection.Documents(context.Background()).GetAll()
+		if err != nil {
+			return err
+		}
+
+		for _, docChildren := range docs {
+			_, err := docChildren.Ref.Delete(context.Background())
+			if err != nil {
+				return err
+			}
+		}
+
+		doc.Ref.Delete(context.Background())
+
+		return nil
+	} else {
+		return fmt.Errorf("the suite %q don't exists on the collection %q", nameSuite, typeSuite)
+	}
+
+
+
+
+}

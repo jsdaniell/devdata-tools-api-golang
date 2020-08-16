@@ -14,7 +14,6 @@ import (
 
 func GetAllSuitesOfAType(w http.ResponseWriter, r *http.Request) {
 
-
 	suiteType := mux.Vars(r)["type"]
 
 	auth := r.Header.Get("Authorization")
@@ -25,11 +24,9 @@ func GetAllSuitesOfAType(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-
-
 	user, err := user_repository.GetUserByUid(auth)
 	if err != nil {
-		responses.ERROR(w, http.StatusBadRequest, err)
+		responses.ERROR(w, http.StatusUnauthorized, err)
 		return
 	}
 
@@ -79,7 +76,7 @@ func CreateNewSuite(w http.ResponseWriter, r *http.Request) {
 
 	user, err := user_repository.GetUserByUid(auth)
 	if err != nil {
-		responses.ERROR(w, http.StatusBadRequest, err)
+		responses.ERROR(w, http.StatusUnauthorized, err)
 		return
 	}
 
@@ -103,4 +100,27 @@ func CreateNewSuite(w http.ResponseWriter, r *http.Request) {
 
 	responses.JSON(w, http.StatusCreated, suites)
 	return
+}
+
+func DeleteSuite(w http.ResponseWriter, r *http.Request) {
+
+	suiteType := mux.Vars(r)["type"]
+	suiteName := mux.Vars(r)["name"]
+
+	auth := r.Header.Get("Authorization")
+
+	user, err := user_repository.GetUserByUid(auth)
+	if err != nil {
+		responses.ERROR(w, http.StatusUnauthorized, err)
+		return
+	}
+
+	err = suite_repository.DeleteSuite(user.Uid, suiteType, suiteName)
+	if err != nil {
+		responses.ERROR(w, http.StatusInternalServerError, err)
+		return
+	}
+
+	w.WriteHeader(http.StatusOK)
+
 }
