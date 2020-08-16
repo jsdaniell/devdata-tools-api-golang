@@ -1,4 +1,4 @@
-package models
+package database_models
 
 type User struct {
 	Uid         string `json:"uid"`

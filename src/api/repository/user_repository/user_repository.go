@@ -4,16 +4,16 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/db"
-	"github.com/jsdaniell/devdata-tools-api-golang/api/models"
+	"github.com/jsdaniell/devdata-tools-api-golang/api/models/database_models"
 	"golang.org/x/net/context"
 )
 
-func loggingAndReturningError(message string) (models.User, error) {
+func loggingAndReturningError(message string) (database_models.User, error) {
 	//logger.LogUser.Println(message)
-	return models.User{}, fmt.Errorf(message)
+	return database_models.User{}, fmt.Errorf(message)
 }
 
-func GetUserByUid(uid string) (models.User, error) {
+func GetUserByUid(uid string) (database_models.User, error) {
 
 	client := db.FirestoreClient()
 	defer client.Close()
@@ -29,7 +29,7 @@ func GetUserByUid(uid string) (models.User, error) {
 	if err != nil {
 		return loggingAndReturningError(err.Error())
 	} else {
-		var us models.User
+		var us database_models.User
 
 		err := json.Unmarshal(parsed, &us)
 		if err != nil {
@@ -40,7 +40,7 @@ func GetUserByUid(uid string) (models.User, error) {
 	}
 }
 
-func CreateNewUserFromLogin(newUser models.User) (models.User, error) {
+func CreateNewUserFromLogin(newUser database_models.User) (database_models.User, error) {
 
 	client := db.FirestoreClient()
 	defer client.Close()
@@ -50,10 +50,10 @@ func CreateNewUserFromLogin(newUser models.User) (models.User, error) {
 
 	_, err := client.Collection("users").Doc(newUser.Uid).Set(context.Background(), newUser)
 	if err != nil {
-		return models.User{}, err
+		return database_models.User{}, err
 	} else {
 
-		var newUs models.User
+		var newUs database_models.User
 
 		newUserFromFirestore, err := client.Collection("users").Doc(newUser.Uid).Get(context.Background())
 		if err != nil {
@@ -62,12 +62,12 @@ func CreateNewUserFromLogin(newUser models.User) (models.User, error) {
 
 		parsedNewUser, err := json.Marshal(newUserFromFirestore.Data())
 		if err != nil {
-			return models.User{}, err
+			return database_models.User{}, err
 		}
 
 		err = json.Unmarshal(parsedNewUser, &newUs)
 		if err != nil {
-			return models.User{}, err
+			return database_models.User{}, err
 		}
 
 		return newUs, nil

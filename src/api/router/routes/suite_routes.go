@@ -13,7 +13,7 @@ var suiteRoutes = []Route{
 
 	},
 	Route{
-		Uri: "/suites/{type}/{name}",
+		Uri: "/suites",
 		Method: http.MethodPost,
 		Handler: controllers.CreateNewSuite,
 	},

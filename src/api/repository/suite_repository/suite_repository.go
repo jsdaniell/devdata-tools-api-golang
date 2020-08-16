@@ -6,11 +6,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/db"
-	"github.com/jsdaniell/devdata-tools-api-golang/api/models"
+	"github.com/jsdaniell/devdata-tools-api-golang/api/models/database_models"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/utils/rules"
 )
 
-func GetAllSuites(uid string, typeSuite string) ([]models.Suite, error) {
+func GetAllSuites(uid string, typeSuite string) ([]database_models.Suite, error) {
 
 	client := db.FirestoreClient()
 	defer client.Close()
@@ -22,10 +22,10 @@ func GetAllSuites(uid string, typeSuite string) ([]models.Suite, error) {
 		return nil, err
 	}
 
-	var suites []models.Suite
+	var suites []database_models.Suite
 
 	for _, doc := range documents {
-		var suite models.Suite
+		var suite database_models.Suite
 
 		jsonString, _ := json.Marshal(doc.Data())
 
@@ -45,10 +45,11 @@ func CreateSuite(uid string, typeSuite string, nameSuite string) (*firestore.Wri
 	client := db.FirestoreClient()
 	defer client.Close()
 
-	var suiteModel models.Suite
+	var suiteModel database_models.Suite
 
 	suiteModel.Title = nameSuite
-	suiteModel.SharedWithSlice = make([]models.SharedWithModel, 0)
+	suiteModel.SharedWith = make([]database_models.SharedWithModel, 1)
+	suiteModel.SharedWith = suiteModel.SharedWith[:len(suiteModel.SharedWith)-1]
 
 	groupCollection := client.Collection("users/" + uid + "/" + typeSuite)
 
