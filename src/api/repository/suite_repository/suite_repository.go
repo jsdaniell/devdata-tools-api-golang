@@ -80,7 +80,7 @@ func DeleteSuite(uid string, typeSuite string, nameSuite string) error {
 
 	doc, err := groupCollection.Doc(rules.DocNameByTitle(nameSuite)).Get(context.Background())
 	if err != nil {
-		return err
+		return fmt.Errorf("the suite %q don't exists on the collection %q", nameSuite, typeSuite)
 	}
 
 	childrenName, err := rules.GetChildrenNameOfSuite(typeSuite)
@@ -110,8 +110,5 @@ func DeleteSuite(uid string, typeSuite string, nameSuite string) error {
 	} else {
 		return fmt.Errorf("the suite %q don't exists on the collection %q", nameSuite, typeSuite)
 	}
-
-
-
 
 }

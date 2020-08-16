@@ -30,6 +30,8 @@ func GetAllSuitesOfAType(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// TODO: return a different type including id, how to modify struct in runtime?
+
 	suites, err := suite_repository.GetAllSuites(user.Uid, suiteType)
 	if err != nil {
 		responses.ERROR(w, http.StatusBadRequest, err)
@@ -122,5 +124,4 @@ func DeleteSuite(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
-
 }
