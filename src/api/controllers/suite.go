@@ -26,17 +26,34 @@ func GetAllSuitesOfAType(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if len(suites) == 0 {
+        suite_repository.CreateSuite(user.Uid, suiteType, "Default")
+	} else {
+		responses.JSON(w, http.StatusOK, suites)
+		return
+	}
+
+	suites, err = suite_repository.GetAllSuites(user.Uid, suiteType)
+	if err != nil {
+		responses.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+
 	responses.JSON(w, http.StatusOK, suites)
 	return
 }
 
 func CreateNewSuite(w http.ResponseWriter, r *http.Request) {
-	//suiteType := mux.Vars(r)["type"]
-	//
-	//auth := r.Header.Get("Authorization")
+	suiteType := mux.Vars(r)["type"]
+	nameSuite := mux.Vars(r)["name"]
 
+	auth := r.Header.Get("Authorization")
 
+	_, err := suite_repository.CreateSuite(auth, suiteType, nameSuite)
+	if err != nil {
+		responses.ERROR(w, http.StatusInternalServerError, err)
+	}
 
-	w.Write([]byte("Create New Suite"))
+	w.WriteHeader(http.StatusCreated)
 }
 
