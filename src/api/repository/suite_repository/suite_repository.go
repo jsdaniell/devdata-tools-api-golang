@@ -8,6 +8,8 @@ import (
 	"github.com/jsdaniell/devdata-tools-api-golang/api/db"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/models/database_models"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/utils/rules"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
 func GetAllSuites(uid string, typeSuite string) ([]database_models.Suite, error) {
@@ -53,11 +55,21 @@ func CreateSuite(uid string, typeSuite string, nameSuite string) (*firestore.Wri
 
 	groupCollection := client.Collection("users/" + uid + "/" + typeSuite)
 
-	res, err := groupCollection.Doc(rules.DocNameByTitle(nameSuite)).Set(context.Background(), suiteModel)
-	if err != nil {
-		fmt.Errorf("error on registre new suite")
-	}
+	doc, err := groupCollection.Doc(rules.DocNameByTitle(nameSuite)).Get(context.Background())
+	if status.Code(err) == codes.NotFound {
+		res, err := groupCollection.Doc(rules.DocNameByTitle(nameSuite)).Set(context.Background(), suiteModel)
+		if err != nil {
+			fmt.Errorf("error on registre new suite")
+		}
 
-	return res, nil
+		return res, nil
+	} else {
+		if doc.Exists() {
+			return nil, fmt.Errorf(`the %q suite already exists`, nameSuite)
+		} else {
+			return nil, fmt.Errorf("error on create suite")
+
+		}
+	}
 
 }

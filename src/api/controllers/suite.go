@@ -30,7 +30,11 @@ func GetAllSuitesOfAType(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if len(suites) == 0 {
-		suite_repository.CreateSuite(user.Uid, suiteType, "Default")
+		_, err := suite_repository.CreateSuite(user.Uid, suiteType, "Default")
+		if err != nil {
+			responses.ERROR(w, http.StatusBadRequest, err)
+			return
+		}
 	} else {
 		responses.JSON(w, http.StatusOK, suites)
 		return
@@ -72,6 +76,7 @@ func CreateNewSuite(w http.ResponseWriter, r *http.Request) {
 	_, err = suite_repository.CreateSuite(user.Uid, createSuiteRequestModel.Type, createSuiteRequestModel.Title)
 	if err != nil {
 		responses.ERROR(w, http.StatusInternalServerError, err)
+		return
 	}
 
 	suites, err := suite_repository.GetAllSuites(user.Uid, createSuiteRequestModel.Type)
