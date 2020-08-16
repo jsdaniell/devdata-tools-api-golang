@@ -7,15 +7,25 @@ import (
 	"github.com/jsdaniell/devdata-tools-api-golang/api/repository/suite_repository"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/repository/user_repository"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/responses"
+	"github.com/jsdaniell/devdata-tools-api-golang/api/utils/rules"
 	"io/ioutil"
 	"net/http"
 )
 
 func GetAllSuitesOfAType(w http.ResponseWriter, r *http.Request) {
 
+
 	suiteType := mux.Vars(r)["type"]
 
 	auth := r.Header.Get("Authorization")
+
+	err := rules.ValidateExistentSuites(suiteType)
+	if err != nil {
+		responses.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+
+
 
 	user, err := user_repository.GetUserByUid(auth)
 	if err != nil {
@@ -68,6 +78,12 @@ func CreateNewSuite(w http.ResponseWriter, r *http.Request) {
 	auth := r.Header.Get("Authorization")
 
 	user, err := user_repository.GetUserByUid(auth)
+	if err != nil {
+		responses.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+
+	err = rules.ValidateExistentSuites(createSuiteRequestModel.Type)
 	if err != nil {
 		responses.ERROR(w, http.StatusBadRequest, err)
 		return

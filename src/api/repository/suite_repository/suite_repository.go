@@ -68,8 +68,6 @@ func CreateSuite(uid string, typeSuite string, nameSuite string) (*firestore.Wri
 			return nil, fmt.Errorf(`the %q suite already exists`, nameSuite)
 		} else {
 			return nil, fmt.Errorf("error on create suite")
-
 		}
 	}
-
 }
