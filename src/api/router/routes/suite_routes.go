@@ -17,7 +17,7 @@ var suiteRoutes = []Route{
 		Handler: controllers.CreateNewSuite,
 	},
 	Route{
-		Uri: "/suites/{type}/{name}",
+		Uri: "/suites/{type}/{id}",
 		Method: http.MethodDelete,
 		Handler: controllers.DeleteSuite,
 	},
@@ -25,5 +25,10 @@ var suiteRoutes = []Route{
 		Uri: "/suites/{type}/{id}/add",
 		Method: http.MethodPost,
 		Handler: controllers.AddNewItemOnSuite,
+	},
+	Route{
+		Uri: "/suites/{type}/{id}",
+		Method: http.MethodGet,
+		Handler: controllers.GetAllItemsFromSuite,
 	},
 }
