@@ -22,7 +22,7 @@ var suiteRoutes = []Route{
 		Handler: controllers.DeleteSuite,
 	},
 	Route{
-		Uri: "/suites/{type}/{name}/add",
+		Uri: "/suites/{type}/{id}/add",
 		Method: http.MethodPost,
 		Handler: controllers.AddNewItemOnSuite,
 	},

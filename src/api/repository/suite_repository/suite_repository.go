@@ -118,15 +118,15 @@ func DeleteSuite(uid string, typeSuite string, nameSuite string) error {
 
 // Suite Items Repository Transactions
 
-func AddNewItemOnSuite(uid string, typeSuite string, nameSuite string, item interface{}) error {
+func AddNewItemOnSuite(uid string, typeSuite string, idSuite string, item interface{}) error {
 	client := db.FirestoreClient()
 	defer client.Close()
 
 	groupCollection := client.Collection("users/" + uid + "/" + typeSuite)
 
-	doc, err := groupCollection.Doc(rules.DocNameByTitle(nameSuite)).Get(context.Background())
+	doc, err := groupCollection.Doc(idSuite).Get(context.Background())
 	if err != nil {
-		return fmt.Errorf("the suite %q don't exists on the collection %q", nameSuite, typeSuite)
+		return fmt.Errorf("the suite %q don't exists on the collection %q", idSuite, typeSuite)
 	}
 
 	childrenName, err := rules.GetChildrenNameOfSuite(typeSuite)
@@ -136,7 +136,7 @@ func AddNewItemOnSuite(uid string, typeSuite string, nameSuite string, item inte
 
 	if doc.Exists() {
 
-		childrenCollection := client.Collection("users/" + uid + "/" + typeSuite + "/" + nameSuite + "/" + childrenName)
+		childrenCollection := client.Collection("users/" + uid + "/" + typeSuite + "/" + idSuite + "/" + childrenName)
 
 		var marshaled, err = json.Marshal(item)
 		if err != nil {
@@ -168,6 +168,6 @@ func AddNewItemOnSuite(uid string, typeSuite string, nameSuite string, item inte
 
 		return nil
 	} else {
-		return fmt.Errorf("the suite %q don't exists on the collection %q", nameSuite, typeSuite)
+		return fmt.Errorf("the suite %q don't exists on the collection %q", idSuite, typeSuite)
 	}
 }

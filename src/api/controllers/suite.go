@@ -28,7 +28,7 @@ func GetAllSuitesOfAType(w http.ResponseWriter, r *http.Request) {
 		responses.ERROR(w, http.StatusUnauthorized, err)
 		return
 	}
-	
+
 	suites, err := suite_repository.GetAllSuites(user.Uid, suiteType)
 	if err != nil {
 		responses.ERROR(w, http.StatusBadRequest, err)
@@ -140,7 +140,7 @@ func AddNewItemOnSuite(w http.ResponseWriter, r *http.Request) {
 	auth := r.Header.Get("Authorization")
 
 	suiteType := mux.Vars(r)["type"]
-	suiteName := mux.Vars(r)["name"]
+	suiteId := mux.Vars(r)["id"]
 
 	user, errUser := user_repository.GetUserByUid(auth)
 	if errUser != nil {
@@ -167,7 +167,7 @@ func AddNewItemOnSuite(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = suite_repository.AddNewItemOnSuite(user.Uid, suiteType, suiteName, entity)
+	err = suite_repository.AddNewItemOnSuite(user.Uid, suiteType, suiteId, entity)
 	if err != nil {
 		responses.ERROR(w, http.StatusBadRequest, err)
 		return
