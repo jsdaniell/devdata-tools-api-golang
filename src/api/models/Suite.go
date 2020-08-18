@@ -7,6 +7,6 @@ type SharedWithModel struct {
 
 type Suite struct {
 	Title string `json:"title"`
-	Id string `json:"id,omitempty"`
+	DocId string `json:"docId,omitempty"`
 	SharedWith []SharedWithModel `json:"sharedWith"`
 }

@@ -28,9 +28,7 @@ func GetAllSuitesOfAType(w http.ResponseWriter, r *http.Request) {
 		responses.ERROR(w, http.StatusUnauthorized, err)
 		return
 	}
-
-	// TODO: return a different type including id, how to modify struct in runtime?
-
+	
 	suites, err := suite_repository.GetAllSuites(user.Uid, suiteType)
 	if err != nil {
 		responses.ERROR(w, http.StatusBadRequest, err)
@@ -128,6 +126,53 @@ func DeleteSuite(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.WriteHeader(http.StatusOK)
+	suites, err := suite_repository.GetAllSuites(user.Uid, suiteType)
+	if err != nil {
+		responses.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+
+	responses.JSON(w, http.StatusOK, suites)
+	return
+}
+
+func AddNewItemOnSuite(w http.ResponseWriter, r *http.Request) {
+	auth := r.Header.Get("Authorization")
+
+	suiteType := mux.Vars(r)["type"]
+	suiteName := mux.Vars(r)["name"]
+
+	user, errUser := user_repository.GetUserByUid(auth)
+	if errUser != nil {
+		responses.ERROR(w, http.StatusUnauthorized, errUser)
+		return
+	}
+
+	var entity, err = rules.GetInterfaceOfSuite(suiteType)
+	if err != nil {
+		responses.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+
+
+	bytes, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		responses.ERROR(w, http.StatusUnprocessableEntity, err)
+		return
+	}
+
+	err = json.Unmarshal(bytes, &entity)
+	if err != nil {
+		responses.ERROR(w, http.StatusUnprocessableEntity, err)
+		return
+	}
+
+	err = suite_repository.AddNewItemOnSuite(user.Uid, suiteType, suiteName, entity)
+	if err != nil {
+		responses.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+
+	w.WriteHeader(http.StatusCreated)
 }
 

@@ -31,7 +31,7 @@ func GetAllSuites(uid string, typeSuite string) ([]models.Suite, error) {
 
 		docWithId := doc.Data()
 
-		docWithId["id"] = doc.Ref.ID
+		docWithId["docId"] = doc.Ref.ID
 
 		jsonString, _ := json.Marshal(docWithId)
 
@@ -109,6 +109,62 @@ func DeleteSuite(uid string, typeSuite string, nameSuite string) error {
 		}
 
 		doc.Ref.Delete(context.Background())
+
+		return nil
+	} else {
+		return fmt.Errorf("the suite %q don't exists on the collection %q", nameSuite, typeSuite)
+	}
+}
+
+// Suite Items Repository Transactions
+
+func AddNewItemOnSuite(uid string, typeSuite string, nameSuite string, item interface{}) error {
+	client := db.FirestoreClient()
+	defer client.Close()
+
+	groupCollection := client.Collection("users/" + uid + "/" + typeSuite)
+
+	doc, err := groupCollection.Doc(rules.DocNameByTitle(nameSuite)).Get(context.Background())
+	if err != nil {
+		return fmt.Errorf("the suite %q don't exists on the collection %q", nameSuite, typeSuite)
+	}
+
+	childrenName, err := rules.GetChildrenNameOfSuite(typeSuite)
+	if err != nil {
+		return err
+	}
+
+	if doc.Exists() {
+
+		childrenCollection := client.Collection("users/" + uid + "/" + typeSuite + "/" + nameSuite + "/" + childrenName)
+
+		var marshaled, err = json.Marshal(item)
+		if err != nil {
+			return err
+		}
+
+		type TitleModel struct {
+			Title string `json:"title"`
+		}
+
+		titleModel := TitleModel{}
+
+		err = json.Unmarshal(marshaled, &titleModel)
+		if err != nil {
+			return err
+		}
+
+		docExists, _ := childrenCollection.Doc(rules.DocNameByTitle(titleModel.Title)).Get(context.Background())
+
+		if docExists.Exists() {
+			return fmt.Errorf("already Exists a document with this title")
+		}
+
+
+		_, err = childrenCollection.Doc(rules.DocNameByTitle(titleModel.Title)).Set(context.Background(), item)
+		if err != nil {
+			return err
+		}
 
 		return nil
 	} else {
