@@ -60,7 +60,7 @@ func CreateNewSuite(w http.ResponseWriter, r *http.Request) {
 
 	type CreateSuiteRequestModel struct {
 		Title string `json:"title"`
-		Type string `json:"type"`
+		Type  string `json:"type"`
 	}
 
 	var createSuiteRequestModel CreateSuiteRequestModel
@@ -154,7 +154,6 @@ func AddNewItemOnSuite(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-
 	bytes, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		responses.ERROR(w, http.StatusUnprocessableEntity, err)
@@ -182,7 +181,7 @@ func AddNewItemOnSuite(w http.ResponseWriter, r *http.Request) {
 	responses.JSON(w, http.StatusOK, allItems)
 }
 
-func GetAllItemsFromSuite(w http.ResponseWriter, r *http.Request){
+func GetAllItemsFromSuite(w http.ResponseWriter, r *http.Request) {
 	auth := r.Header.Get("Authorization")
 
 	suiteType := mux.Vars(r)["type"]
@@ -203,3 +202,74 @@ func GetAllItemsFromSuite(w http.ResponseWriter, r *http.Request){
 	responses.JSON(w, http.StatusOK, allItems)
 }
 
+func EditItemFromSuite(w http.ResponseWriter, r *http.Request) {
+	auth := r.Header.Get("Authorization")
+
+	suiteType := mux.Vars(r)["type"]
+	suiteId := mux.Vars(r)["id"]
+	itemId := mux.Vars(r)["itemId"]
+
+	user, errUser := user_repository.GetUserByUid(auth)
+	if errUser != nil {
+		responses.ERROR(w, http.StatusUnauthorized, errUser)
+		return
+	}
+
+	var entity, err = rules.GetInterfaceOfSuite(suiteType)
+	if err != nil {
+		responses.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+
+	bytes, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		responses.ERROR(w, http.StatusUnprocessableEntity, err)
+		return
+	}
+
+	err = json.Unmarshal(bytes, &entity)
+	if err != nil {
+		responses.ERROR(w, http.StatusUnprocessableEntity, err)
+		return
+	}
+
+	err = suite_repository.EditItemFromSuite(user.Uid, suiteType, suiteId, itemId, entity)
+	if err != nil {
+		responses.ERROR(w, http.StatusBadRequest, err)
+	}
+
+	allItems, err := suite_repository.GetItemsFromSuite(user.Uid, suiteType, suiteId)
+	if err != nil {
+		responses.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+
+	responses.JSON(w, http.StatusOK, allItems)
+}
+
+func DeleteItemFromSuite(w http.ResponseWriter, r *http.Request){
+	auth := r.Header.Get("Authorization")
+
+	suiteType := mux.Vars(r)["type"]
+	suiteId := mux.Vars(r)["id"]
+	itemId := mux.Vars(r)["itemId"]
+
+	user, errUser := user_repository.GetUserByUid(auth)
+	if errUser != nil {
+		responses.ERROR(w, http.StatusUnauthorized, errUser)
+		return
+	}
+
+	err := suite_repository.DeleteItemFromSuite(user.Uid, suiteType, suiteId, itemId)
+	if err != nil {
+		responses.ERROR(w, http.StatusBadRequest, err)
+	}
+
+	allItems, err := suite_repository.GetItemsFromSuite(user.Uid, suiteType, suiteId)
+	if err != nil {
+		responses.ERROR(w, http.StatusBadRequest, err)
+		return
+	}
+
+	responses.JSON(w, http.StatusOK, allItems)
+}

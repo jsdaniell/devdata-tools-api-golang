@@ -215,3 +215,69 @@ func GetItemsFromSuite(uid string, typeSuite string, idSuite string) ([]interfac
 	}
 
 }
+
+func EditItemFromSuite(uid string, typeSuite string, idSuite string, idItem string, jsonToUpdate interface{}) error {
+	client := db.FirestoreClient()
+	defer client.Close()
+
+	groupCollection := client.Collection("users/" + uid + "/" + typeSuite)
+
+	doc, err := groupCollection.Doc(idSuite).Get(context.Background())
+	if err != nil {
+		return fmt.Errorf("the suite %q don't exists on the collection %q", idSuite, typeSuite)
+	}
+
+	childrenName, err := rules.GetChildrenNameOfSuite(typeSuite)
+	if err != nil {
+		return err
+	}
+
+	if doc.Exists() {
+
+		docFromCollection, _ := client.Collection("users/" + uid + "/" + typeSuite + "/" + idSuite + "/" + childrenName).Doc(idItem).Get(context.Background())
+
+		if docFromCollection.Exists() {
+
+			_, err := docFromCollection.Ref.Set(context.Background(), jsonToUpdate)
+			if err != nil {
+				return err
+			}
+
+		} else {
+			return fmt.Errorf(`the document id %q don't exists`, idItem)
+		}
+
+		return nil
+	} else {
+		return fmt.Errorf("the suite %q don't exists on the collection %q", idSuite, typeSuite)
+	}
+}
+
+func DeleteItemFromSuite(uid string, typeSuite string, idSuite string, idItem string) error {
+	client := db.FirestoreClient()
+	defer client.Close()
+
+	groupCollection := client.Collection("users/" + uid + "/" + typeSuite)
+
+	doc, err := groupCollection.Doc(idSuite).Get(context.Background())
+	if err != nil {
+		return fmt.Errorf("the suite %q don't exists on the collection %q", idSuite, typeSuite)
+	}
+
+	childrenName, err := rules.GetChildrenNameOfSuite(typeSuite)
+	if err != nil {
+		return err
+	}
+
+	if doc.Exists() {
+
+		_, err :=  client.Collection("users/" + uid + "/" + typeSuite + "/" + idSuite + "/" + childrenName).Doc(idItem).Delete(context.Background())
+		if err != nil {
+			return err
+		}
+
+		return nil
+	} else {
+		return fmt.Errorf("the suite %q don't exists on the collection %q", idSuite, typeSuite)
+	}
+}

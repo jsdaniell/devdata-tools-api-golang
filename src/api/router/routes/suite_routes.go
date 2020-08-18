@@ -31,4 +31,14 @@ var suiteRoutes = []Route{
 		Method: http.MethodGet,
 		Handler: controllers.GetAllItemsFromSuite,
 	},
+	Route{
+		Uri: "/suites/{type}/{id}/{itemId}",
+		Method: http.MethodPut,
+		Handler: controllers.EditItemFromSuite,
+	},
+	Route{
+		Uri: "/suites/{type}/{id}/{itemId}",
+		Method: http.MethodDelete,
+		Handler: controllers.DeleteItemFromSuite,
+	},
 }
