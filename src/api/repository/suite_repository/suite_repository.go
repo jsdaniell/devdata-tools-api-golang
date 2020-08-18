@@ -6,13 +6,13 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/db"
-	"github.com/jsdaniell/devdata-tools-api-golang/api/models/database_models"
+	"github.com/jsdaniell/devdata-tools-api-golang/api/models"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/utils/rules"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
 
-func GetAllSuites(uid string, typeSuite string) ([]database_models.Suite, error) {
+func GetAllSuites(uid string, typeSuite string) ([]models.Suite, error) {
 
 	client := db.FirestoreClient()
 	defer client.Close()
@@ -24,12 +24,16 @@ func GetAllSuites(uid string, typeSuite string) ([]database_models.Suite, error)
 		return nil, err
 	}
 
-	var suites []database_models.Suite
+	var suites []models.Suite
 
 	for _, doc := range documents {
-		var suite database_models.Suite
+		var suite models.Suite
 
-		jsonString, _ := json.Marshal(doc.Data())
+		docWithId := doc.Data()
+
+		docWithId["id"] = doc.Ref.ID
+
+		jsonString, _ := json.Marshal(docWithId)
 
 		err := json.Unmarshal(jsonString, &suite)
 		if err != nil {
@@ -47,10 +51,10 @@ func CreateSuite(uid string, typeSuite string, nameSuite string) (*firestore.Wri
 	client := db.FirestoreClient()
 	defer client.Close()
 
-	var suiteModel database_models.Suite
+	var suiteModel models.Suite
 
 	suiteModel.Title = nameSuite
-	suiteModel.SharedWith = make([]database_models.SharedWithModel, 1)
+	suiteModel.SharedWith = make([]models.SharedWithModel, 1)
 	suiteModel.SharedWith = suiteModel.SharedWith[:len(suiteModel.SharedWith)-1]
 
 	groupCollection := client.Collection("users/" + uid + "/" + typeSuite)
@@ -110,5 +114,4 @@ func DeleteSuite(uid string, typeSuite string, nameSuite string) error {
 	} else {
 		return fmt.Errorf("the suite %q don't exists on the collection %q", nameSuite, typeSuite)
 	}
-
 }

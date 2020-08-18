@@ -3,7 +3,6 @@ package controllers
 import (
 	"encoding/json"
 	"github.com/gorilla/mux"
-	"github.com/jsdaniell/devdata-tools-api-golang/api/models/request_models"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/repository/suite_repository"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/repository/user_repository"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/responses"
@@ -60,7 +59,13 @@ func GetAllSuitesOfAType(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateNewSuite(w http.ResponseWriter, r *http.Request) {
-	var createSuiteRequestModel request_models.CreateSuiteRequestModel
+
+	type CreateSuiteRequestModel struct {
+		Title string `json:"title"`
+		Type string `json:"type"`
+	}
+
+	var createSuiteRequestModel CreateSuiteRequestModel
 
 	bytes, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -125,3 +130,4 @@ func DeleteSuite(w http.ResponseWriter, r *http.Request) {
 
 	w.WriteHeader(http.StatusOK)
 }
+

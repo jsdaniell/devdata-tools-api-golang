@@ -10,7 +10,6 @@ var suiteRoutes = []Route{
 		Uri: "/suites/{type}",
 		Method: http.MethodGet,
 		Handler: controllers.GetAllSuitesOfAType,
-
 	},
 	Route{
 		Uri: "/suites",

@@ -1,4 +1,4 @@
-package database_models
+package models
 
 type SharedWithModel struct {
 	User string `json:"user"`
@@ -7,5 +7,6 @@ type SharedWithModel struct {
 
 type Suite struct {
 	Title string `json:"title"`
+	Id string `json:"id,omitempty"`
 	SharedWith []SharedWithModel `json:"sharedWith"`
 }
