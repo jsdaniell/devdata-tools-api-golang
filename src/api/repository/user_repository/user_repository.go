@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/db"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/models"
+	"github.com/jsdaniell/devdata-tools-api-golang/api/utils/json_utility"
 	"golang.org/x/net/context"
 )
 
@@ -48,7 +49,12 @@ func CreateNewUserFromLogin(newUser models.User) (models.User, error) {
 	//logger.LogUser.Println("Creating new user from: " + newUser.DisplayName + " | " + newUser.ApiKey + " | " + newUser.Email)
 	fmt.Println("Creating new user from: " + newUser.DisplayName + " | " + newUser.ApiKey + " | " + newUser.Email)
 
-	_, err := client.Collection("users").Doc(newUser.Uid).Set(context.Background(), newUser)
+	jsonLowerCase, err := json_utility.StructToLowerCaseJson(newUser)
+	if err != nil {
+		return models.User{}, err
+	}
+
+	_, err = client.Collection("users").Doc(newUser.Uid).Set(context.Background(), jsonLowerCase)
 	if err != nil {
 		return models.User{}, err
 	} else {

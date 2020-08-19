@@ -30,12 +30,8 @@ func LoginUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	user, err = user_repository.GetUserByUid(userReceived.Uid)
-	if err != nil {
-		responses.ERROR(w, http.StatusUnprocessableEntity, err)
-		return
-	}
 
-	if (models.User{}) == user {
+	if (models.User{}) == user && err != nil {
 		newUser, err := user_repository.CreateNewUserFromLogin(userReceived)
 		if err != nil {
 			responses.ERROR(w, http.StatusInternalServerError, err)

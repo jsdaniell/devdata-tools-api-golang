@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/db"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/models"
+	"github.com/jsdaniell/devdata-tools-api-golang/api/utils/json_utility"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/utils/rules"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -58,9 +59,16 @@ func CreateSuite(uid string, typeSuite string, nameSuite string) (*firestore.Wri
 
 	groupCollection := client.Collection("users/" + uid + "/" + typeSuite)
 
+	// TODO: Change Keys of Suite Model to lowerCase
+
+	lowerCaseJson, err := json_utility.StructToLowerCaseJson(suiteModel)
+	if err != nil {
+		return nil, err
+	}
+
 	doc, err := groupCollection.Doc(rules.DocNameByTitle(nameSuite)).Get(context.Background())
 	if status.Code(err) == codes.NotFound {
-		res, err := groupCollection.Doc(rules.DocNameByTitle(nameSuite)).Set(context.Background(), suiteModel)
+		res, err := groupCollection.Doc(rules.DocNameByTitle(nameSuite)).Set(context.Background(), lowerCaseJson)
 		if err != nil {
 			fmt.Errorf("error on registre new suite")
 		}
