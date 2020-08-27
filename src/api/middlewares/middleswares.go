@@ -15,7 +15,8 @@ func SetMiddlewareLogger(next http.HandlerFunc) http.HandlerFunc{
 
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+		w.Header().Set("Access-Control-Allow-Methods", "*")
 
 		log.Println("%s %s%s %s", r.Method, r.Host, r.RequestURI, r.Proto)
 
@@ -31,7 +32,9 @@ func SetMiddlewareLogger(next http.HandlerFunc) http.HandlerFunc{
 
 func SetMiddlewareJSON(next http.HandlerFunc, openRoute bool) http.HandlerFunc{
 	return func(w http.ResponseWriter, r *http.Request){
-		w.Header().Set("Content-Type", "application/json")
+
+		//w.Header().Set("Content-Type", "application/json")
+
 
 		if !openRoute {
 			auth := r.Header.Get("Authorization")

@@ -2,7 +2,6 @@ package json_utility
 
 import (
 	"encoding/json"
-	"github.com/davecgh/go-spew/spew"
 )
 
 func StructToLowerCaseJson(data interface{}) (interface{}, error){
@@ -18,8 +17,6 @@ func StructToLowerCaseJson(data interface{}) (interface{}, error){
 	if err != nil {
 		return nil, err
 	}
-
-	spew.Dump(r)
 
 	return r, nil
 }

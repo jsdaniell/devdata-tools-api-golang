@@ -13,6 +13,8 @@ import (
 	"google.golang.org/grpc/status"
 )
 
+const LimitOfDocsPerPage = 7
+
 func GetAllSuites(uid string, typeSuite string) ([]models.Suite, error) {
 
 	client := db.FirestoreClient()
@@ -60,11 +62,13 @@ func CreateSuite(uid string, typeSuite string, nameSuite string) (*firestore.Wri
 	groupCollection := client.Collection("users/" + uid + "/" + typeSuite)
 
 	// TODO: Change Keys of Suite Model to lowerCase
+	
 
 	lowerCaseJson, err := json_utility.StructToLowerCaseJson(suiteModel)
 	if err != nil {
 		return nil, err
 	}
+
 
 	doc, err := groupCollection.Doc(rules.DocNameByTitle(nameSuite)).Get(context.Background())
 	if status.Code(err) == codes.NotFound {
@@ -196,7 +200,102 @@ func GetItemsFromSuite(uid string, typeSuite string, idSuite string) ([]interfac
 
 	if doc.Exists() {
 
-		childrenCollection, _ := client.Collection("users/" + uid + "/" + typeSuite + "/" + idSuite + "/" + childrenName).Documents(context.Background()).GetAll()
+		childrenCollection, _ := client.Collection("users/" + uid + "/" + typeSuite + "/" + idSuite + "/" + childrenName).OrderBy("title", firestore.Asc).Limit(LimitOfDocsPerPage).Documents(context.Background()).GetAll()
+
+		var items []interface{}
+
+		for _, doc := range childrenCollection {
+			var item interface{}
+
+			docWithId := doc.Data()
+
+			docWithId["docId"] = doc.Ref.ID
+
+			jsonString, _ := json.Marshal(docWithId)
+
+			err := json.Unmarshal(jsonString, &item)
+			if err != nil {
+				return nil, err
+			}
+
+			items = append(items, item)
+		}
+
+		return items, nil
+	} else {
+		return nil, fmt.Errorf("the suite %q don't exists on the collection %q", idSuite, typeSuite)
+	}
+
+}
+
+func GetItemsFromSuiteNext(uid string, typeSuite string, idSuite string, lastDoc string) ([]interface{}, error) {
+	client := db.FirestoreClient()
+	defer client.Close()
+
+	groupCollection := client.Collection("users/" + uid + "/" + typeSuite)
+
+	doc, err := groupCollection.Doc(idSuite).Get(context.Background())
+	if err != nil {
+		return nil, fmt.Errorf("the suite %q don't exists on the collection %q", idSuite, typeSuite)
+	}
+
+	childrenName, err := rules.GetChildrenNameOfSuite(typeSuite)
+	if err != nil {
+		return nil, err
+	}
+
+	if doc.Exists() {
+
+		childrenCollection, err := client.Collection("users/" + uid + "/" + typeSuite + "/" + idSuite + "/" + childrenName).OrderBy("title", firestore.Asc).StartAfter(lastDoc).Limit(LimitOfDocsPerPage).Documents(context.Background()).GetAll()
+		if err != nil {
+			return nil, err
+		}
+
+		var items []interface{}
+
+		for _, doc := range childrenCollection {
+			var item interface{}
+
+			docWithId := doc.Data()
+
+			docWithId["docId"] = doc.Ref.ID
+
+			jsonString, _ := json.Marshal(docWithId)
+
+			err := json.Unmarshal(jsonString, &item)
+			if err != nil {
+				return nil, err
+			}
+
+			items = append(items, item)
+		}
+
+		return items, nil
+	} else {
+		return nil, fmt.Errorf("the suite %q don't exists on the collection %q", idSuite, typeSuite)
+	}
+
+}
+
+func GetItemsFromSuitePrevious(uid string, typeSuite string, idSuite string, lastDoc string) ([]interface{}, error) {
+	client := db.FirestoreClient()
+	defer client.Close()
+
+	groupCollection := client.Collection("users/" + uid + "/" + typeSuite)
+
+	doc, err := groupCollection.Doc(idSuite).Get(context.Background())
+	if err != nil {
+		return nil, fmt.Errorf("the suite %q don't exists on the collection %q", idSuite, typeSuite)
+	}
+
+	childrenName, err := rules.GetChildrenNameOfSuite(typeSuite)
+	if err != nil {
+		return nil, err
+	}
+
+	if doc.Exists() {
+
+		childrenCollection, _ := client.Collection("users/" + uid + "/" + typeSuite + "/" + idSuite + "/" + childrenName).OrderBy("title", firestore.Asc).EndBefore(lastDoc).Limit(LimitOfDocsPerPage).Documents(context.Background()).GetAll()
 
 		var items []interface{}
 

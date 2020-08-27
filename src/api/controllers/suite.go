@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/repository/suite_repository"
 	"github.com/jsdaniell/devdata-tools-api-golang/api/repository/user_repository"
@@ -187,19 +188,54 @@ func GetAllItemsFromSuite(w http.ResponseWriter, r *http.Request) {
 	suiteType := mux.Vars(r)["type"]
 	suiteId := mux.Vars(r)["id"]
 
+	lastDoc := r.URL.Query().Get("lastDoc")
+	navigate := r.URL.Query().Get("navigate")
+
+
+
 	user, errUser := user_repository.GetUserByUid(auth)
 	if errUser != nil {
 		responses.ERROR(w, http.StatusUnauthorized, errUser)
 		return
 	}
 
-	allItems, err := suite_repository.GetItemsFromSuite(user.Uid, suiteType, suiteId)
-	if err != nil {
-		responses.ERROR(w, http.StatusBadRequest, err)
+	if navigate != "" && lastDoc != "" {
+
+		switch navigate {
+		case "next":
+			allItems, err := suite_repository.GetItemsFromSuiteNext(user.Uid, suiteType, suiteId, lastDoc)
+			if err != nil {
+				responses.ERROR(w, http.StatusBadRequest, err)
+				return
+			}
+
+			 responses.JSON(w, http.StatusOK, allItems)
+			return
+		case "previous":
+			allItems, err := suite_repository.GetItemsFromSuitePrevious(user.Uid, suiteType, suiteId, lastDoc)
+			if err != nil {
+				responses.ERROR(w, http.StatusBadRequest, err)
+				return
+			}
+
+			responses.JSON(w, http.StatusOK, allItems)
+			return
+		default:
+			responses.ERROR(w, http.StatusBadRequest, fmt.Errorf("missing valid navigation string on query parameter"))
+			return
+		}
+	} else {
+		allItems, err := suite_repository.GetItemsFromSuite(user.Uid, suiteType, suiteId)
+		if err != nil {
+			responses.ERROR(w, http.StatusBadRequest, err)
+			return
+		}
+
+		responses.JSON(w, http.StatusOK, allItems)
 		return
 	}
 
-	responses.JSON(w, http.StatusOK, allItems)
+
 }
 
 func EditItemFromSuite(w http.ResponseWriter, r *http.Request) {
