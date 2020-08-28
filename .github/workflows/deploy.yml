@@ -13,7 +13,7 @@ jobs:
         with:
           go-version: '1.14.6'
       - run: cd src && go mod vendor
-      - run: cd src && git add . && git commit -a -m "Deploy Heroku Commit"
+      - run: cd src && git config --global user.email "jose.daniell@outlook.com" && git config --global user.name "jsdaniell" && git add . && git commit -a -m "Deploy Heroku Commit"
       - uses: akhileshns/heroku-deploy@v3.4.6
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
