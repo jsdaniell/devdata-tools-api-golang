@@ -1,36 +1,36 @@
-name: Heroku CI - CD
-
-on:
-  push:
-    branches: [ master ]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - uses: actions/setup-go@v1
-        with:
-          go-version: '1.14.6'
-      - run: cd src && go mod vendor
-      - run: cd src && git config --global user.email "jose.daniell@outlook.com" && git config --global user.name "jsdaniell" && git add . && git commit -a -m "Deploy Heroku Commit"
-      - uses: schdck/create-env-json@v1
-        id: create-env
-        with:
-          file-name: "devdatatools-firebase-adminsdk.json"
-          type: "service_account"
-          project_id: "devdatatools"
-          private_key_id: ${{ secrets.PRIVATE_KEY_ID }}
-          private_key: ${{ secrets.PRIVATE_KEY }}
-          client_email: ${{ secrets.CLIENT_EMAIL }}
-          client_id: "117106178066369852268"
-          auth_uri: "https://accounts.google.com/o/oauth2/auth"
-          token_uri: "https://oauth2.googleapis.com/token"
-          auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs"
-          client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-hdrpb%40devdatatools.iam.gserviceaccount.com"
-      - uses: akhileshns/heroku-deploy@v3.4.6
-        with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: "dev-data-tools-api-golang"
-          heroku_email: "jose.daniell@outlook.com"
-          appdir: "src"
+#name: Heroku CI - CD
+#
+#on:
+#  push:
+#    branches: [ master ]
+#
+#jobs:
+#  deploy:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@master
+#      - uses: actions/setup-go@v1
+#        with:
+#          go-version: '1.14.6'
+#      - run: cd src && go mod vendor
+#      - run: cd src && git config --global user.email "jose.daniell@outlook.com" && git config --global user.name "jsdaniell" && git add . && git commit -a -m "Deploy Heroku Commit"
+#      - uses: schdck/create-env-json@v1
+#        id: create-env
+#        with:
+#          file-name: "devdatatools-firebase-adminsdk.json"
+#          type: "service_account"
+#          project_id: "devdatatools"
+#          private_key_id: ${{ secrets.PRIVATE_KEY_ID }}
+#          private_key: ${{ secrets.PRIVATE_KEY }}
+#          client_email: ${{ secrets.CLIENT_EMAIL }}
+#          client_id: "117106178066369852268"
+#          auth_uri: "https://accounts.google.com/o/oauth2/auth"
+#          token_uri: "https://oauth2.googleapis.com/token"
+#          auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs"
+#          client_x509_cert_url: "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-hdrpb%40devdatatools.iam.gserviceaccount.com"
+#      - uses: akhileshns/heroku-deploy@v3.4.6
+#        with:
+#          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+#          heroku_app_name: "dev-data-tools-api-golang"
+#          heroku_email: "jose.daniell@outlook.com"
+#          appdir: "src"
