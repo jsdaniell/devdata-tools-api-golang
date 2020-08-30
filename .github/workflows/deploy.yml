@@ -14,7 +14,8 @@ jobs:
           go-version: '1.14.6'
       - run: cd src && go mod vendor
       - run: cd src && git config --global user.email "jose.daniell@outlook.com" && git config --global user.name "jsdaniell" && git add . && git commit -a -m "Deploy Heroku Commit"
-      - uses: jsdaniell/create-json@updated
+      - name: create-json
+        uses: jsdaniell/create-json@release
         with:
           name: "devdatatools-firebase-adminsdk.json"
           json-string: ${{ secrets.CREDENTIALS_JSON }}
