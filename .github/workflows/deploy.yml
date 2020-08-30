@@ -22,7 +22,7 @@ jobs:
           json-string: ${{ secrets.CREDENTIALS_JSON }}
           dir: "src/"
       - name: create-json
-        id: create-json
+        id: create-json-env
         uses: jsdaniell/create-json@alpha-v1
         with:
           name: ".env"
