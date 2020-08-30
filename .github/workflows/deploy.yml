@@ -16,18 +16,12 @@ jobs:
       - run: cd src && git config --global user.email "jose.daniell@outlook.com" && git config --global user.name "jsdaniell" && git add . && git commit -a -m "Deploy Heroku Commit"
       - name: create-json
         id: create-json
-        uses: jsdaniell/create-json@alpha-v1
+        uses: jsdaniell/create-json@alpha-v3
         with:
           name: "devdatatools-firebase-adminsdk.json"
           json-string: ${{ secrets.CREDENTIALS_JSON }}
           dir: "src/"
-      - name: create-json
-        id: create-json-env
-        uses: jsdaniell/create-json@alpha-v1
-        with:
-          name: ".env"
-          json-string: "API_PORT=9000"
-          dir: "src/"
+      - run: cd src && ls
       - uses: akhileshns/heroku-deploy@v3.4.6
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
