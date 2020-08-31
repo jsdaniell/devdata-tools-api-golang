@@ -16,7 +16,7 @@ jobs:
       - run: cd src && git config --global user.email "jose.daniell@outlook.com" && git config --global user.name "jsdaniell" && git add . && git commit -a -m "Deploy Heroku Commit"
       - name: create-json
         id: create-json
-        uses: jsdaniell/create-json@0.2.0
+        uses: jsdaniell/create-json@0.3.0
         with:
           name: "devdatatools-firebase-adminsdk.json"
           object: ${{ '{name:"look"}' }}
