@@ -21,7 +21,7 @@ jobs:
           name: "devdatatools-firebase-adminsdk.json"
           object: ${{ secrets.CREDENTIALS_OBJECT }}
           dir: "src/"
-      - run: cd src && git config --global user.email "jose.daniell@outlook.com" && git config --global user.name "jsdaniell" && git add . && git commit -a -m "Deploy Heroku Commit"
+      - run: cd src && git config --global user.email "jose.daniell@outlook.com" && git config --global user.name "jsdaniell" && git commit -a -m "Deploy Heroku Commit"
       - run: cd src && ls
       - uses: akhileshns/heroku-deploy@v3.4.6
         with:
