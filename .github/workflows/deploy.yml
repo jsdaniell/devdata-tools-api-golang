@@ -19,12 +19,12 @@ jobs:
         uses: jsdaniell/create-json@0.4.0
         with:
           name: "devdatatools-firebase-adminsdk.json"
-          object: ${{ '{name:"look"}' }}
+          object: ${{ secrets.CREDENTIALS_OBJECT }}
           dir: "src/"
       - run: cd src && ls
-#      - uses: akhileshns/heroku-deploy@v3.4.6
-#        with:
-#          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-#          heroku_app_name: "dev-data-tools-api-golang"
-#          heroku_email: "jose.daniell@outlook.com"
-#          appdir: "src"
+      - uses: akhileshns/heroku-deploy@v3.4.6
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "dev-data-tools-api-golang"
+          heroku_email: "jose.daniell@outlook.com"
+          appdir: "src"
