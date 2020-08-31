@@ -19,7 +19,7 @@ jobs:
         uses: jsdaniell/create-json@0.1.0
         with:
           name: "devdatatools-firebase-adminsdk.json"
-          object: ${{ secrets.OBJECT_T }}
+          object: ${{ '{name:"look"}' }}
           dir: "src/"
       - run: cd src && ls
 #      - uses: akhileshns/heroku-deploy@v3.4.6
