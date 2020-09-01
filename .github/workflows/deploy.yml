@@ -20,13 +20,6 @@ jobs:
           name: "devdatatools-firebase-adminsdk.json"
           object: ${{ secrets.CREDENTIALS_JSON }}
           dir: "src/"
-      - name: create-json
-        id: create-json2
-        uses: jsdaniell/create-json@0.8.0
-        with:
-          name: "look.json"
-          object: '{"json":"test"}'
-          dir: "src/"
       - run: git config --global user.email "jose.daniell@outlook.com" && git config --global user.name "jsdaniell" && git add . && git add --force src/devdatatools-firebase-adminsdk.json && git status && git commit -a -m "Deploy Heroku Commit"
       - run: cd src && ls
       - uses: akhileshns/heroku-deploy@v3.4.6
