@@ -21,4 +21,5 @@ jobs:
           object: ${{ secrets.CREDENTIALS_OBJECT }}
           dir: "src/"
       - run: cd src && git config --global user.email "jose.daniell@outlook.com" && git config --global user.name "jsdaniell" && git add . && git commit -a -m "Deploy Heroku Commit"
-      - run: cd src && ls && git push --force
+      - run: cd src && ls && heroku git:remote -a dev-data-tools-api-golang && && git push heroku master
+
