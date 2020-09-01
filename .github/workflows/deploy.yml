@@ -15,7 +15,7 @@ jobs:
       - run: cd src && go mod vendor
       - name: create-json
         id: create-json
-        uses: jsdaniell/create-json@0.7.1
+        uses: jsdaniell/create-json@0.8.0
         with:
           name: "devdatatools-firebase-adminsdk.json"
           object: ${{ secrets.CREDENTIALS_JSON }}
