@@ -21,7 +21,6 @@ jobs:
           json: ${{ secrets.CREDENTIALS_JSON }}
           dir: "src/"
       - run: git config --global user.email "jose.daniell@outlook.com" && git config --global user.name "jsdaniell" && git add . && git add --force src/devdatatools-firebase-adminsdk.json && git status && git commit -a -m "Deploy Heroku Commit"
-      - run: cd src && ls
       - uses: akhileshns/heroku-deploy@v3.4.6
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
