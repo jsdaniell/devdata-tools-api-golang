@@ -20,7 +20,10 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb7605e2-7191-4ba9-bbce-f8ab23e6ca1b" name="Default Changelist" comment="" />
+    <list default="true" id="bb7605e2-7191-4ba9-bbce-f8ab23e6ca1b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/deploy.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/deploy.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -198,11 +201,11 @@
     </state>
     <state x="347" y="54" width="586" height="714" key="find.popup/-1094.-1057.1920.1057/0.23.1280.777@0.23.1280.777" timestamp="1597257229250" />
     <state x="347" y="54" width="636" height="714" key="find.popup/0.23.1280.777@0.23.1280.777" timestamp="1598465291390" />
-    <state x="417" y="196" width="670" height="497" key="search.everywhere.popup" timestamp="1598892811091">
+    <state x="417" y="196" width="670" height="497" key="search.everywhere.popup" timestamp="1598931128680">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="-469" y="-822" width="670" height="676" key="search.everywhere.popup/-1094.-1057.1920.1057/0.23.1280.777@-1094.-1057.1920.1057" timestamp="1597182247989" />
-    <state x="417" y="196" width="670" height="497" key="search.everywhere.popup/-1094.-1057.1920.1057/0.23.1280.777@0.23.1280.777" timestamp="1597326220801" />
+    <state x="417" y="196" width="670" height="497" key="search.everywhere.popup/-1094.-1057.1920.1057/0.23.1280.777@0.23.1280.777" timestamp="1598931128680" />
     <state x="417" y="196" width="670" height="497" key="search.everywhere.popup/0.23.1280.777@0.23.1280.777" timestamp="1598892811091" />
   </component>
 </project>
