@@ -20,9 +20,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bb7605e2-7191-4ba9-bbce-f8ab23e6ca1b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/deploy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/src/deploy.sh" afterDir="false" />
-    </list>
+    <list default="true" id="bb7605e2-7191-4ba9-bbce-f8ab23e6ca1b" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,7 +35,7 @@
   </component>
   <component name="GOROOT" path="/usr/local/Cellar/go/1.14.6/libexec" />
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/src" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GoLibraries">
     <option name="urls">
@@ -128,11 +126,11 @@
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="61" y="32" width="1071" height="748" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1280.777@0.23.1280.777" timestamp="1597510750604" />
-    <state x="491" y="272" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1597289562107">
+    <state x="491" y="272" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1598932035213">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
     <state x="-358" y="-718" key="#com.intellij.fileTypes.FileTypeChooser/-1094.-1057.1920.1057/0.23.1280.777@-1094.-1057.1920.1057" timestamp="1597179796274" />
-    <state x="491" y="272" key="#com.intellij.fileTypes.FileTypeChooser/-1094.-1057.1920.1057/0.23.1280.777@0.23.1280.777" timestamp="1597289562107" />
+    <state x="491" y="272" key="#com.intellij.fileTypes.FileTypeChooser/-1094.-1057.1920.1057/0.23.1280.777@0.23.1280.777" timestamp="1598932035213" />
     <state width="775" height="466" key="DebuggerActiveHint" timestamp="1598466245250">
       <screen x="0" y="23" width="1280" height="777" />
     </state>
